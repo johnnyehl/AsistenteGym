@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-8">
+			<div class="thumbnail">
+
+				<div class="rtitulo">
+								<div class="rletra">
+									<div class="letra">
+										<h3>R</h3>
+									</div>
+								</div>
+								<div class="titulo"> egistro de usuario</div>
+							</div>
+				
+				<div class="bg-warning" > <h4 class="text-success">&nbsp; &nbsp; hola <span class="text-primary">{{ user }} </span>Bienvenido completa los datos necesarios para completar tu registro</h4></div>
+
+				<div class="caption">
+					<form class="form-inline" role="form" method="POST">
+					{% csrf_token %}
+					 <div class="form-group">
+					    <div class="input-group">
+					      <label class="sr-only" for="exampleInputEmail2">Nombre de usuario</label>
+						      <div class="input-group-addon">
+						      	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+						      </div>
+					      <input type="text" class="form-control" name="username" placeholder="Nombre de usuario">
+					      
+					    </div>
+					    <label class="text-danger">{{ error_username }}</label>
+					  </div>
+					  
+					  <br>
+					  <div class="form-group">
+						  <div class="input-group">
+						    <label class="sr-only" for="exampleInputPassword2">Email</label>
+						    <div class="input-group-addon">@</div>
+						    <input type="email" class="form-control" name="email"  placeholder="Correo electrónico">
+						  </div>
+						  <label class="text-danger">{{ error_email }}</label>
+					  </div>
+
+					    <br>
+					  <div class="form-group">
+						  <div class="input-group">
+						    <label class="sr-only" for="exampleInputPassword2"></label>
+						    <div class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></div>
+						    <input type="number" max="99999999" min="10000000" class="form-control" name="dni"  placeholder="número de tu DNI" required>
+						  </div>
+						   <label class="text-danger">{{ error_dni }}</label>
+					  </div>
+
+					  <p></p>
+					  <div class="checkbox">
+					    <label>
+					      <input type="checkbox"> Remember me
+					    </label>
+					  </div>
+					  <p></p>
+					  <button type="submit" class="btn btn-success" aria-label="Left Align">
+					  	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						Registrarme
+					  </button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}	
+
+<div class="container">
+	<div class="row">
+ 		<div class="col-sm-6 col-md-4">
+ 		<!-- <br> -->
+			<div class="thumbnail">
+
+				<div class="utitulo">
+						<div class="unumero">
+							<div class="numero">
+							 	<h3>P</h3>
+							</div>
+						</div>
+						<div class="titulo"> erfil de usuario</div>
+				</div>
+
+
+			      <img src="{{ user.avatar }}" data-src="holder.js/300x200" alt="...">
+			      <div class="caption text-justify">
+			        <h3 class="text-center">{{ user.username }}</h3>
+			        <hr>
+			        <b>Nombre: </b>{{ user.first_name }} {{ user.last_name }}<br>
+			        <b>Email:</b><a href="mailto:#"> {{user.email}}</a><br>
+			        <b>Fecha de nacimiento:</b> 
+			        {% if user.fecha_anicmiento == null %}
+			        Necesita ser evaluado
+			        {% else %}
+			        	{{user.fecha_nacimiento}}
+			        {% endif %}
+			        
+			         <br>
+			        <b>Talla:</b>
+					{% if user.talla == null %}
+			        Necesita ser evaluado
+			        {% else %}
+			        	{{user.talla}} cm
+			        {% endif %}
+			        <hr>
+			        <b>Redes Sociales:</b><br><br>
+			        <p>
+			        	{% if facebook %}
+							<a href="http://fb.com/{{ facebook }}" class="btn btn-primary" role="button"><span class="icon-facebook"></span>Facebook</a> 
+			        	{% endif %}
+			        	{% if twitter %}
+							<a href="http://twitter.com/{{ twitter }}" class="btn btn-primary" role="button"><span class="icon-twitter"></span>Twitter</a>
+			        	{% endif %}
+			        	
+			        	
+			        <!--	<a href="#" class="btn btn-primary" role="button"><span class="icon-googleplus"></span>    Google +</a> -->
+			        </p>
+			      </div>
+			    </div>
+			  </div>
+			  
+		<div class="col-md-8">
+		<!-- <br> -->
+			<div class="panel"><!--
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Preguntas Hechas en DevAsk</h3>
+
+			  </div>-->
+
+			  <div class="ititulo">
+						<div class="iletra">
+							<div class="letra">
+							 	<h3>I</h3>
+							</div>
+						</div>
+						<div class="titulo"> nformación</div>
+				</div>
+
+			  <div class="panel-body">
+			   {% if mat == 0 %}
+			  	<blockquote class=" blockinfo" >
+					<h4 class="text-info"><span>Matrícula</span></h4>
+					<span class="subtitulo-jumbotron">Estado: </span><span class="text-danger"> Usuario no matriculado</span>
+					<p class="text-right">
+					<a href="/paquetes/"><button class="btn btn-dia aling-left"> <span class="glyphicon glyphicon-shopping-cart"></span> Matricularme</button></a>
+					</p>
+			
+
+				</blockquote>
+				<blockquote  class=" blockinfo" >
+				<h4 class="text-info"><span>Evolución</span></h4>
+
+					<span class="subtitulo-jumbotron">Estado:</span><span class="text-danger"> Necesita estar matriculado para ver evolucion </span>
+				
+				</blockquote>
+
+			   {% endif %}
+
+			  {% for matricula in matriculas %}
+			  	
+				<blockquote class=" blockinfo" >
+				<h4 class="text-info"><span>Matrícula</span></h4>
+				{% if matricula.confirmacion == False and matricula.estado == True %}
+					<span class="subtitulo-jumbotron">Estado:</span><a href="/matricula/{{matricula.paquete.id}}"> <span class="text-warning"> Esperando confirmación de pago</span></a><br>
+					<span class="subtitulo-jumbotron">Fecha regitro:</span><span class="text-warning"> {{matricula.created|date:"d M Y"}} </span>
+				{% endif %}
+
+				{% if matricula.confirmacion == True and matricula.estado == True %}
+					<span class="subtitulo-jumbotron">Estado:</span><a href="/matricula/{{matricula.paquete.id}}"><span class="text-success"> Matriculado </span></a><br>
+					<span class="subtitulo-jumbotron">Fecha de expiración:</span><span class="text-success"> {{matricula.fecha_fin|date:"d M Y"}} </span>
+						
+				{% endif %}
+
+				
+				{% if  matricula.estado == False  %}
+					<span class="subtitulo-jumbotron">Estado: </span><span class="text-danger"> Usuario no matriculado</span>
+					<p class="text-right">
+					<a href="/paquetes/"><button class="btn btn-dia aling-left"> <span class="glyphicon glyphicon-shopping-cart"></span> Matricularme</button></a>
+					</p>
+				{% endif %}
+
+				</blockquote>
+
+				<blockquote  class=" blockinfo" >
+				<h4 class="text-info"><span>Evolución</span></h4>
+				{% if matricula.estado == True  %}
+					<span class="subtitulo-jumbotron">Estado:</span><a href="/evolucion/"><span class="text-success"> ver evolución</span></a>
+				{% endif %}
+
+				{% if matricula.estado == False  %}
+					<span class="subtitulo-jumbotron">Estado:</span><span class="text-danger"> Necesita estar matriculado para ver evolucion </span>
+				{% endif %}
+				</blockquote>
+			  {% endfor %}
+
+
+			    <blockquote class=" blockinfo" >
+			    <h4 class="text-info"><span>Rutinas</span></h4>
+			  {% for rutina in rutinas %}
+			  	<a href="/rutina-detalle/{{rutina.id}}/"><button class="btn btn-dia glyphicon glyphicon-eye-open"></button></a> <span class="text-success"> &nbsp;{{rutina.nombre}} </span> <hr>
+				
+			  
+			  {% endfor %}
+			  </blockquote>
+			  
+
+			  </div>
+			</div>
+
+			
+
+				
+		</div>
+	</div>
+</div>
+
+{% else %}
+
+<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=/">
+
+{% endif %}
+
+{% endblock %}

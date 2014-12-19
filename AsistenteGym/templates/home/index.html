@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>OLYMPUS asistente GYM</title>
+
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/css/style.css">
+	<link rel="stylesheet" href="/static/css/main.css">
+	<link rel="stylesheet" href="/static/css/login.css">
+  <link rel="stylesheet" href="/static/css/tarjeta.css">
+</head>
+<body>
+{% if user.is_authenticated %}
+				<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=/rutinas/">
+			{% else %}
+					<div class="container">
+						<br>
+						
+						<div class="block" >
+						<br>
+							<h1 class="text-center"><strong>Bienvenido a:</strong></h1>
+							<p class="fondo-logo">
+							<p class="fondo-logo text-center">
+							 <span class="logo-login">OLYMPUS</span><span class="logo-nombre-login">&nbsp;asistente</span><span class="logo-login">&nbsp;GYN</span></p>
+							 </p><br>
+
+							 <h3 class="text-center"><strong>Conéctate con:</strong></h3>
+
+							<p class="text-center">
+							<a href="{% url 'social:begin' 'twitter' %}" type="button" class="btn btn-primary btn-lg btn-lg-customize-tw"><span class="icon-twitter"></span>Twitter
+							  </a>
+							</p>
+
+						</div>
+							
+				<!--
+							<div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+              Panel content
+            </div>
+          </div>
+
+
+						</div>
+					</div> -->
+				
+				
+			{% endif %}
+	
+</body>
+</html>

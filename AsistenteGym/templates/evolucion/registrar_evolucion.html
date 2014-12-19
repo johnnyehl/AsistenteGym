@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block title %} R: Crear Rutina {% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 col-md-8">
+			<div class="thumbnail">
+				<div class="ttitulo">
+					<div class="tletra">
+						<div class="letra">
+							<h3>R</h3>
+						</div>
+					</div>
+					<div class="titulo">egistrar Evolución</div>
+				</div>
+				
+				<div class="caption text-justify">
+						
+					<form method="POST">
+						{% csrf_token %}
+
+						<div class="input-group">
+							<div class="input-group-addon">Usuario &nbsp;&nbsp;</div>
+							<input onkeyup="if(validarEnter(event)== true){ buscarUser();}" type="number" id="dni" class="form-control" placeholder="DNI del alumno" name="user" required >
+							<div id="buscar" class=" btn input-group-addon"> <span class="glyphicon glyphicon-search"></span></div>
+						</div>
+						<span class="text-danger">{{form.user.dni.errors}}</span><br>
+						<hr>
+
+						<div id="apto" class="busqueda">
+
+						<div class="input-group">
+							<div class="input-group-addon">Peso &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+							{{form.peso}}<div class="input-group-addon"> Kg</div>
+						</div>
+						<span class="text-danger">{{form.peso.errors}}</span><br>
+
+						<div class="input-group">
+							<div class="input-group-addon">Hombro&nbsp;&nbsp; </div>
+							{{form.hombro}}<div class="input-group-addon"> Cm</div>
+						</div>
+						<span class="text-danger">{{form.hombro.errors}}</span><br>
+
+						<div class="input-group">
+							<div class="input-group-addon">Hombro&nbsp;&nbsp; </div>
+							{{form.pecho}}<div class="input-group-addon"> Cm</div>
+						</div>
+						<span class="text-danger">{{form.pecho.errors}}</span><br>
+
+						<div class="input-group">
+							<div class="input-group-addon">Cintura &nbsp;&nbsp;&nbsp; </div>
+							{{form.cintura}}<div class="input-group-addon"> Cm</div>
+						</div>
+						<span class="text-danger">{{form.cintura.errors}}</span><br>
+
+						<div class="input-group">
+							<div class="input-group-addon">Brazo &nbsp; &nbsp;&nbsp; &nbsp;</div>
+							{{form.brazo}}<div class="input-group-addon"> Cm</div>
+						</div>
+						<span class="text-danger">{{form.brazo.errors}}</span><br>
+						
+						<div class="input-group">
+							<div class="input-group-addon">Antebrazo</div>
+							{{form.antebrazo}}<div class="input-group-addon"> Cm</div>
+						</div>
+						<span class="text-danger">{{form.antebrazo.errors}}</span><br>
+						
+						<div class="input-group">
+							<div class="input-group-addon">Pierna &nbsp; &nbsp; &nbsp;</div>
+							{{form.pierna}}<div class="input-group-addon"> Cm</div>
+						</div>
+						<span class="text-danger">{{form.pierna.errors}}</span><br>
+
+						<div class="input-group">
+							<div class="input-group-addon">Pantorrilla </div>
+							{{form.pantorrillas}}<div class="input-group-addon"> Cm</div>
+						</div>
+						<span class="text-danger">{{form.pantorrillas.errors}}</span><br>
+
+						<div class="input-group">
+							<div class="input-group-addon">Gluteo &nbsp; &nbsp; &nbsp;</div>
+							{{form.gluteos}}<div class="input-group-addon"> Cm</div>
+						</div>
+						<span class="text-danger">{{form.gluteos.errors}}</span><br>
+
+						<button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button> 
+						</div>
+					</form>
+
+				</div>
+
+			</div>		
+		</div>
+
+		<div class="col-sm-4 col-md-4">
+			<div class="list-group">
+				<div class="thumbnail">
+					  <div class="etitulo">
+					<div class="eletra">
+						
+					</div>
+					<div class="titulo">Instrucción</div>
+				</div>
+					  
+					<div class="caption text-justify">
+					  <p>Los campos del formulario son obligatorios, debes ingresar los datos indicados para el registro correspondiente. </p>
+						<p>Con el cumplimiento de esta instrucción brindaremos un buen servicio a nuestros alumnos aciendole llegar información clara y presisa de su evolución en su entrenamiento en nuestro estableciomiento.</p><hr>
+						<p><strong>Att. La Gerencia</strong></p>
+
+					  
+					  </div>
+				</div>
+			</div>
+		</div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+		
+
+
+<script>
+
+	$("#buscar").on('click', buscarUser);
+	$("#dni").on('click', labelClick);
+	bandera = 0;
+	function labelClick(){
+
+		if (bandera == 1) {
+			$('.busqueda').slideToggle();
+			bandera=0;
+		};
+	}
+	function buscarUser(){
+		dni = $("#dni").val();
+		$.getJSON('/buscar-user-ajax/',{'dni':dni}, function(data){
+               
+               
+                	if (data.length > 0) {
+                		for (var i = 0; i< data.length ; i++) {
+
+                			if (data[i]=='apto') {
+                				$('.busqueda').slideToggle();
+                				bandera=1;
+                			};
+                			if (data[i]=='no apto') {
+                				alert('Usuario no apto realise su evaluación');
+                			};
+                			if (data[i]=='null') {
+                				alert('Usuario no existente');
+                			};
+						
+						};
+
+						
+                	};
+
+                	if (data.length == 0) {
+              
+                	};
+
+            	});
+	}
+	function validarEnter(e){
+		var key = e.keyCode || e.which;
+		if (key==13) {return true;}else{return false};
+	};
+
+	
+</script>
+{% endblock %}

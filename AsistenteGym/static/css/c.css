@@ -1,0 +1,345 @@
+
+@font-face {
+  font-family: 'iconitos';
+  src: url("../fonts2/icomoon.eot");
+  src: url("../fonts2/icomoon.eot?#iefix") format('embedded-opentype'), url("../fonts/icomoon.ttf") format('truetype'), url("../fonts/icomoon.woff") format('woff'), url("../fonts/icomoon.svg#icomoon") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* Sobreescribiendo bootstrap*/
+/* navbar */
+.navbar-default {
+    background-color: #444;
+    border-radius: 0%;
+    border: none;
+    margin: 0 0 1em 0;
+   /* padding: 0 8em 0 8em;*/
+}
+/* title */
+.navbar-default .navbar-brand {
+    color: #FFFFFF;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #FFAC33;
+}
+/* link */
+.navbar-default .navbar-nav > li > a {
+    color: #FFFFFF;
+    height: 50px;
+    text-shadow: 1px 1px 0px #000;
+}
+
+/***/
+.foto {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+/***/
+/* foco al pasar puntero encima */
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #FFAC33;
+    background-color: #40403E;
+}
+/* pagina seleccionada en el navegador */
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #FFAC33;
+    background-color: #40403E;
+}
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #40403E; /* color de fondo de btn perfil img */
+}
+/* caret */
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #777;
+    border-bottom-color: #777;
+}
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #40403E;
+    border-bottom-color: #333;
+}
+.navbar-default .navbar-nav > .open > a .caret, 
+.navbar-default .navbar-nav > .open > a:hover .caret, 
+.navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #555;
+    border-bottom-color: #555;
+}
+/** lista desplegable*/
+.dropdown-menu{
+  margin: 0 1em 0 0;
+  background: #444;
+  border: none;
+  border-radius: 0%;
+}
+ .dropdown-menu > li > a {
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0px #000;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    color: #FFAC33;
+    background: transparent;
+}
+/* mobile version */
+.navbar-default .navbar-toggle {
+    border-color: #FFFFFF;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #FFAC33;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFFFFF;
+}
+
+/************ thumbnail ****/
+.thumbnail-login {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  /*background: #22bce0;*/
+  border-radius: 0%;
+  border-color: #7A7A7A;
+  border: none;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.thumbnail {
+  padding: 0;
+  margin: 0;
+  /*background: #22bce0;*/
+  border-radius: 0%;
+  border-color: #7A7A7A;
+  border: none;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.thumbnail .utitulo {
+  background: #DD4F24;
+  font-size: 18px;
+  font-style: italic;
+  text-shadow: 1px 1px 0px #000;
+  color: #fff;
+  margin: 0;
+  height: 40px;
+/****** rutina*/
+}
+.thumbnail .utitulo .titulo {
+  padding: 0.6em 0 0 40.5px;
+}
+.thumbnail .utitulo .unumero {
+  margin: 0.1em 0 0 0.2em;
+  position: absolute;
+}
+.thumbnail .utitulo .unumero .numero {
+  border: 1px solid #fff;
+  height: 35px;
+  width: 35px;
+  background: #DD4F24; /* color de fondo circulo */
+  padding: 0.3em 0.2em 0 0.45em;
+  border-radius: 50%;
+}
+.thumbnail .utitulo .unumero .numero h3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+.thumbnail .foto-perfil {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-top: 0.5em;
+}
+
+.thumbnail .caption {
+  background: #fff;
+  margin: 0.5em 0 0 0;
+}
+.thumbnail .caption .controlador {
+  height: 30px;
+  width: 30px;
+  float: right;
+}
+.thumbnail .caption .controlador .clapiz {
+  text-decoration: none;
+  border: 2px solid #7a7a7a;
+  height: 30px;
+  width: 30px;
+  float: right;
+  border-radius: 50%;
+  margin: 0;
+}
+.thumbnail .caption .controlador .clapiz .lapiz {
+  font-size: 18px;
+  margin: 0 0 0 0.25em;
+}
+.thumbnail .caption .controlador .clapiz .lapiz:after {
+  font-family: "iconos_control";
+  color: #7a7a7a;
+  content: "\e604";
+}
+/************ fin thumbnail ****/
+
+/** panel */
+.panel{
+  border-radius: 0%;
+  margin: 0;
+  border-color: #7A7A7A;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  border: none;
+}
+
+/*======= BUTTONS PERSONALIZADOS ====*/
+.btn-ttc,
+.btn-ttc:hover,
+.btn-ttc:active {
+
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #7870CB;
+  
+}
+
+.btn-ejercicio,
+.btn-ejercicio:hover,
+.btn-ejercicio:active {
+
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #DD4F24;
+  
+}
+
+.btn-rutina,
+.btn-rutina:hover,
+.btn-rutina:active {
+
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #7870CB;
+  
+}
+.btn-dia,
+.btn-dia:hover,
+.btn-dia:active {
+
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #BE5FB6;
+  
+}
+.btn-musculo,
+.btn-musculo:hover,
+.btn-musculo:active {
+
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #9A2F49;
+  
+}
+/*=======FIN BUTTONS PERSONALIZADOS ====*/
+@media (max-width: 767px) {
+    .navbar-default{
+        margin: 0;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #FFFFFF;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #FFAC33;
+    }
+    .navbar-default .navbar-nav .usuario {
+       position: relative;
+       float: left;
+       margin: 0;
+       padding: 0;
+    }
+    .container{
+      padding: 0;
+      background: #444444;
+    }
+    .panel {
+      border-color: #444;
+    }
+    .thumbnail {
+      border-color: #444;
+    }
+
+}
+
+body{
+ /* background: #E9EAED;*/
+ background: url('/static/img/fndo_home.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: repeat-y;
+  /*color:#fff;*/
+    background-color:#333;
+}
+/********dividr ***/
+.dropdown-menu .divider {
+  background-color: #40403E;
+}
+.contenido{
+  display: none;
+  height: 50px;
+}
+.btn,
+.btn:hover,
+.btn:active {
+  border-radius: 0%;
+}
+/****div recomendaciones *******/
+.recomendacion{
+  /*padding-top: 1em;*/
+  border-radius: 20%;
+ /* border-color: #444;*/
+}
+.recomendacion .titulo{
+  color: #7870CB;
+  /*text-shadow: 1px 1px 0px #000;*/
+}
+/***DIV FORM ADD EJERCICIO */
+.contenedor{
+  padding: 0.8em;
+  display: none;
+  height: 208px;
+}
+.contenidos{
+  display: none;
+}
+.imagen{
+  max-height: 350px;
+  max-width: 300px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.busqueda{
+  display: none;
+}
+
+/*div tipo de pago */
+.chek-visa{
+   display: none;
+}
+.chek-paypal{
+   display: none;
+}

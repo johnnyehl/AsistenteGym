@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} R: Lista {% endblock %}
+
+{% block content %}
+
+	<div class="container">
+		
+		<div class="row">
+		{% for paquete in paquetes %}
+			<div class="col-md-6 col-sm-6">
+			
+				<div class="thumbnail">
+					<div class="ptitulo">
+						<div class="letra">
+							<h3>Paquete</h3>
+						</div>
+						<div class="titulo"> {{ paquete.nombre }}</div>
+					</div>
+
+					<div class="prtitulo">
+						<div class="prletra">
+							<div class="letra">
+								<h3>{{paquete.meses}}</h3>
+							</div>
+						</div>
+						{% if paquete.meses < 2 %}
+						<div class="titulo"> Mes</div>
+						{% endif %}
+						{% if paquete.meses >= 2 and paquete.meses < 10 %}
+						<div class="titulo"> Meses</div>
+						{% endif %}
+						{% if paquete.meses > 9 %}
+						<div class="titulo"> &nbsp;&nbsp;&nbsp;Meses</div>
+						{% endif %}
+					</div>
+					
+					<div class="precio">S/. {{paquete.costo}}</div>
+							
+						<br>
+							<p class="text-center">
+					<a href="/matricula/{{paquete.id}}" >
+				<button class="btn btn-danger "><span class="glyphicon glyphicon-shopping-cart"></span> <b>Matricularme</b></button></a></p>
+					<br>
+					
+
+				</div>
+				
+
+<br>
+				</div>
+				
+			{% endfor %}
+
+		</div>
+	</div>
+{% endblock %}
+
+

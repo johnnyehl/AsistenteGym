@@ -1,0 +1,511 @@
+{% extends 'base.html' %}
+
+{% block title %} R: Matricula {% endblock %}
+
+{% block sesion %}
+	<ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle padding-minus" data-toggle="dropdown">
+          
+					<img src="{{ usuario.avatar }}" class="foto perfil">
+					<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="/usuario/{{usuario.username}}">Perfil</a></li>
+          <li class="divider"></li>
+          <li><a href="{% url 'users:logout' %}">Salir</a></li>
+        </ul>
+      </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="thumbnail">
+
+					<div class="ctitulo">
+						<div class="cletra">
+							<div class="letra">
+								<h3>R</h3>
+							</div>
+						</div>
+						<div class="titulo"> egistrar matricula</div>
+					</div>
+					{% if usuario.apto == False %}
+
+						<div class="caption text-justify">
+							<div class="row">
+								<div class="col-md-6">
+									<h4 class="text-danger text-center"><strong>Lo sentimos usted no puede matricularse &nbsp;:( </strong></h4><br>
+									<p class="">Necesita pasar por una evaluación fisica para determinar si se encuentra apto y pueda entrenar en nuestros establecimientos. </p>
+									<p>La evaluación es gratuita y no nesesariamente tendra que realizar su matricula en el momento. Al pasar por la evalución usted quedara apto para realizar su matricula en cualquier momento.</p>
+									<hr>
+												<p>Cualquier duda o reclamo pongase en contacto con nosotros:
+												<p ><span class="subtitulo-jumbotron">Telefono:</span>&nbsp;&nbsp; 956916349</p>
+												<p ><span class="subtitulo-jumbotron">Correo:</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:#">olympusgym@gmail.com</a></p>
+												<p ><span class="subtitulo-jumbotron">Direccion:</span>&nbsp; Calle panpa de lara nr. 156 Barranca</p>
+												<hr>
+												<button  class="btn btn-success" ><span class="glyphicon glyphicon-print"></span> <b>Imprimir</b></button>
+												<hr>
+								</div>
+								<div class="col-md-6">
+
+									 <div id="map-container"></div>
+
+								</div>
+							</div>
+						</div>
+
+					{% endif %}
+
+					
+
+					{% if usuario.apto == True and longitud > 0 %}
+							{% for matricula in matriculas  %}
+							{% if matricula.confirmacion == False and matricula.estado == True %}
+
+									<div class="caption text-justify">
+										<div class="row">
+											<div class="col-md-6">
+												<h4 class=" text-center"><strong class="text-info">{{usuario.username}}</strong><strong class="text-danger"> tu matricula fue registrado estamos esperando confirmación de pago &nbsp;:) </strong></h4><br>
+												<blockquote>
+													<table>
+														<tr>
+															<td class="text-info"><h4><b>Fecha:</b></h4></td>
+															<td>&nbsp;</td>
+															<td><h4>{{matricula.created}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Nro Transacción:</b></h4></td>
+															<td>&nbsp;</td>
+															<td><h4>00{{matricula.id}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Apellidos:</b></h4></td>
+															<td>&nbsp;</td>
+															<td><h4>{{usuario.last_name}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>DNI:</b></h4></td>
+															<td>&nbsp;</td>
+															<td><h4>{{usuario.dni}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Email:</b></h4></td>
+															<td>&nbsp;&nbsp;&nbsp;</td>
+															<td><h4 href="mailto:#">{{usuario.email}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Nro meses:</b></h4></td>
+															<td>&nbsp;&nbsp;&nbsp;</td>
+															<td><h4 href="mailto:#">{{matricula.paquete.meses}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Monto:</b></h4></td>
+															<td>&nbsp;&nbsp;&nbsp;</td>
+															<td><h4 href="mailto:#">{{matricula.paquete.costo}}</h4></td>
+														</tr>
+													</table>
+												</blockquote>
+												<hr>
+												<p>Cualquier duda o reclamo pongase en contacto con nosotros:
+												<p ><span class="subtitulo-jumbotron">Telefono:</span>&nbsp;&nbsp; 956916349</p>
+												<p ><span class="subtitulo-jumbotron">Correo:</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:#">olympusgym@gmail.com</a></p>
+												<p ><span class="subtitulo-jumbotron">Direccion:</span>&nbsp; Calle panpa de lara nr. 156 Barranca</p>
+												<hr>
+												<button  class="btn btn-success" ><span class="glyphicon glyphicon-print"></span> <b>Imprimir</b></button>
+												<hr>
+											</div>
+											<div class="col-md-6">
+												<div id="map-container"></div>
+											</div>
+										</div>
+									</div>
+								{% endif %}
+
+								{% if matricula.confirmacion == True and matricula.estado == True %}
+
+									<div class="caption text-justify">
+										<div class="row">
+											<div class="col-md-6">
+												<h4 class=" text-center"><strong class="text-info">{{usuario.username}}</strong><strong class="text-success"> ya estas matriculado &nbsp;(: </strong></h4><br>
+												<blockquote>
+													<table>
+														<tr>
+															<td class="text-info"><h4><b>Fecha:</b></h4></td>
+															<td>&nbsp;</td>
+															<td><h4>{{matricula.created}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Nro Transacción:</b></h4></td>
+															<td>&nbsp;</td>
+															<td><h4>00{{matricula.id}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Apellidos:</b></h4></td>
+															<td>&nbsp;</td>
+															<td><h4>{{usuario.last_name}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>DNI:</b></h4></td>
+															<td>&nbsp;</td>
+															<td><h4>{{usuario.dni}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Email:</b></h4></td>
+															<td>&nbsp;&nbsp;&nbsp;</td>
+															<td><h4 href="mailto:#">{{usuario.email}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Nro meses:</b></h4></td>
+															<td>&nbsp;&nbsp;&nbsp;</td>
+															<td><h4 href="mailto:#">{{matricula.paquete.meses}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Monto:</b></h4></td>
+															<td>&nbsp;&nbsp;&nbsp;</td>
+															<td><h4 href="mailto:#">{{matricula.paquete.costo}}</h4></td>
+														</tr>
+													</table>
+												</blockquote>
+												<hr>
+												<blockquote>
+													<table>
+													<tr>
+														<th><span class="subtitulo-jumbotron">Tiempo duración de la matricula </span></th>
+													</tr>
+
+														<tr>
+															<td class="text-info"><h4><b>Inicio:</b></h4></td>
+															<td>&nbsp;&nbsp;&nbsp;</td>
+															<td><h4 href="mailto:#">{{matricula.created|date:"d M Y"}}</h4></td>
+														</tr>
+														<tr>
+															<td class="text-info"><h4><b>Expiración:</b></h4></td>
+															<td>&nbsp;&nbsp;&nbsp;</td>
+															<td><h4 href="mailto:#">{{matricula.fecha_fin|date:"d M Y"}}</h4></td>
+														</tr>
+
+													</table>
+												</blockquote>
+												<hr>
+												<p>Pongase en contacto con nosotros:
+												<p ><span class="subtitulo-jumbotron">Telefono:</span>&nbsp;&nbsp; 956916349</p>
+												<p ><span class="subtitulo-jumbotron">Correo:</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:#" >olympusgym@gmail.com</a></p>
+												<p ><span class="subtitulo-jumbotron">Direccion:</span>&nbsp; Calle panpa de lara nr. 156 Barranca</p>
+												<hr>
+												<button  class="btn btn-success" ><span class="glyphicon glyphicon-print"></span> <b>Imprimir</b></button>
+												<hr>
+											</div>
+											<div class="col-md-6">
+												<div id="map-container"></div>
+											</div>
+										</div>
+									</div>
+								{% endif %}
+							
+				
+
+							
+
+							{% endfor %}
+				
+					{% endif %}
+
+					{% if no == True  %} 
+							<div id="datos" class="datos">
+								
+								<div class="caption text-justify">
+									<div class="row">
+										<div class="col-md-6">
+											<div name="user_id" class="hidden">{{usuario.id}}</div>
+											<blockquote>
+												<table>
+													<tr>
+														<th><strong class="subtitulo-jumbotron">Datos personaleskk </strong></th>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Nombres:</b></h4></td>
+														<td>&nbsp;</td>
+														<td><h4>{{usuario.first_name}}</h4></td>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Apellidos:</b></h4></td>
+														<td>&nbsp;</td>
+														<td><h4>{{usuario.last_name}}</h4></td>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>DNI:</b></h4></td>
+														<td>&nbsp;</td>
+														<td><h4>{{usuario.dni}}</h4></td>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Email:</b></h4></td>
+														<td>&nbsp;&nbsp;&nbsp;</td>
+														<td><h4 href="mailto:#">{{usuario.email}}</h4></td>
+													</tr>
+												</table>
+											</blockquote>
+
+										</div>
+
+										<div class="col-md-6">
+										<div name="" class="hidden">{{paquete.id}}</div>
+											<blockquote>
+												<table>
+													<tr>
+														<th><strong class="subtitulo-jumbotron">Datos del paquete </strong></th>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Paquete:</b></h4></td>
+														<td>&nbsp;&nbsp;&nbsp;</td>
+														<td><h4>{{paquete.nombre}}</h4></td>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Meses:</b></h4></td>
+														<td>&nbsp;&nbsp;&nbsp;</td>
+														<td><h4>{{paquete.meses}}</h4></td>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Precio:</b></h4></td>
+														<td>&nbsp;&nbsp;&nbsp;</td>
+														<td><h4><b>S/.</b>{{paquete.costo}}</h4></td>
+													</tr>
+												</table>
+												<br><br>
+											</blockquote>
+										</div>
+									</div>
+										<hr>
+									<div class="row">
+									<div class="col-md-6">
+									<blockquote>
+									<strong class="subtitulo-jumbotron text-center">Medio de pago </strong><br><h4>
+									<label class="text-primary">Visa</label>
+									<br><br>
+									<label  for="">Número de tarjeta</label>
+									<input onkeyup="" type="number" class="form-control" placeholder="Número de tarjeta" name="tipo" required >
+									<br>
+									<label for="">Número de seguridad</label>
+									<div class="input-group">
+									<input onkeyup="" type="number" class="form-control" placeholder="3 ultimos números" name="tipo" required >
+									</div>
+									<br>
+									<label for="">Fecha de vencimiento</label>
+									<div class="input-group">
+									<div class="input-group-addon"> Mes</div>
+										 <select class="form-control" placeholder="Mes">
+										  <option>01</option>
+										  <option>02</option>
+										  <option>03</option>
+										  <option>04</option>
+										  <option>05</option>
+										  <option>06</option>
+										  <option>07</option>
+										  <option>08</option>
+										  <option>09</option>
+										  <option>10</option>
+										  <option>11</option>
+										  <option>12</option>
+										</select>
+									
+									<div class="input-group-addon"> Año</div>
+									<select class="form-control" value="Año">
+									  <option>2014</option>
+									  <option>2015</option>
+									  <option>2016</option>
+									  <option>2017</option>
+									  <option>2018</option>
+									  <option>2019</option>
+									  <option>2020</option>
+									  <option>2021</option>
+									  <option>2022</option>
+									  <option>2023</option>
+									  <option>2024</option>
+									  <option>2025</option>
+									</select>
+									</div>
+									<br>
+									<a href="/registrar-matricula/{{paquete.id}}/Visa">
+									<button  class="btn btn-primary">Pagar con visa</button></a>
+
+									</blockquote>
+									</div>
+									
+									<div class="col-md-6">
+									<blockquote>
+									<strong class="subtitulo-jumbotron text-center">Medio de pago </strong><br><h4>
+									<br><br><br><br><br><br>
+									<label class="text-warning">Paypal</label><br><br>
+									<button class="btn btn-warning">Pagar con paypal</button>
+									<br><br><br><br><br><br><br>
+									</blockquote>
+									</div>
+									</div>
+									
+
+									
+									</div>
+							</div>
+							{% endif %}
+
+							{% if longitud == 0 %}
+						
+							<div id="datos" class="datos">
+								<div class="caption text-justify">
+									<div class="row">
+										<div class="col-md-6">
+
+											<blockquote>
+												<table>
+													<tr>
+														<th><strong class="subtitulo-jumbotron">Datos personales </strong></th>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Nombres:</b></h4></td>
+														<td>&nbsp;</td>
+														<td><h4>{{usuario.first_name}}</h4></td>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Apellidos:</b></h4></td>
+														<td>&nbsp;</td>
+														<td><h4>{{usuario.last_name}}</h4></td>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>DNI:</b></h4></td>
+														<td>&nbsp;</td>
+														<td><h4>{{usuario.dni}}</h4></td>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Email:</b></h4></td>
+														<td>&nbsp;&nbsp;&nbsp;</td>
+														<td><h4 href="mailto:#">{{usuario.email}}</h4></td>
+													</tr>
+												</table>
+											</blockquote>
+
+										</div>
+
+										<div class="col-md-6">
+											<blockquote>
+												<table>
+													<tr>
+														<th><strong class="subtitulo-jumbotron">Datos del paquete </strong></th>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Paquete:</b></h4></td>
+														<td>&nbsp;&nbsp;&nbsp;</td>
+														<td><h4>{{paquete.nombre}}</h4></td>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Meses:</b></h4></td>
+														<td>&nbsp;&nbsp;&nbsp;</td>
+														<td><h4>{{paquete.meses}}</h4></td>
+													</tr>
+													<tr>
+														<td class="text-info"><h4><b>Precio:</b></h4></td>
+														<td>&nbsp;&nbsp;&nbsp;</td>
+														<td><h4><b>S/.</b>{{paquete.costo}}</h4></td>
+													</tr>
+												</table>
+												<br><br>
+											</blockquote>
+										</div>
+									</div>
+								
+									<hr>
+									<div class="row">
+									<div class="col-md-6">
+									<blockquote>
+									<strong class="subtitulo-jumbotron text-center">Medio de pago </strong><br><h4>
+									<label class="text-primary">Visa</label>
+									<br><br>
+									<label  for="">Número de tarjeta</label>
+									<input onkeyup="" type="number" class="form-control" placeholder="Número de tarjeta" name="tipo" required >
+									<br>
+									<label for="">Número de seguridad</label>
+									<div class="input-group">
+									<input onkeyup="" type="number" class="form-control" placeholder="3 ultimos números" name="tipo" required >
+									</div>
+									<br>
+									<label for="">Fecha de vencimiento</label>
+									<div class="input-group">
+									<div class="input-group-addon"> Mes</div>
+										 <select class="form-control" placeholder="Mes">
+										  <option>01</option>
+										  <option>02</option>
+										  <option>03</option>
+										  <option>04</option>
+										  <option>05</option>
+										  <option>06</option>
+										  <option>07</option>
+										  <option>08</option>
+										  <option>09</option>
+										  <option>10</option>
+										  <option>11</option>
+										  <option>12</option>
+										</select>
+									
+									<div class="input-group-addon"> Año</div>
+									<select class="form-control" value="Año">
+									  <option>2014</option>
+									  <option>2015</option>
+									  <option>2016</option>
+									  <option>2017</option>
+									  <option>2018</option>
+									  <option>2019</option>
+									  <option>2020</option>
+									  <option>2021</option>
+									  <option>2022</option>
+									  <option>2023</option>
+									  <option>2024</option>
+									  <option>2025</option>
+									</select>
+									</div>
+									<br>
+									<a href="/registrar-matricula/{{paquete.id}}/Visa">
+									<button class="btn btn-primary">Pagar con visa</button></a>
+
+									</blockquote>
+									</div>
+									
+									<div class="col-md-6">
+									<blockquote>
+									<strong class="subtitulo-jumbotron text-center">Medio de pago </strong><br><h4>
+									<br><br><br><br><br><br>
+									<label class="text-warning">Paypal</label><br><br>
+									<button class="btn btn-warning">Pagar con paypal</button>
+									<br><br><br><br><br><br><br>
+									</blockquote>
+									</div>
+									</div>
+								
+
+							</div>
+							{% endif %}
+
+					
+
+
+			
+				</div>
+			<p>&nbsp;</p>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}
+ 
+{% block scripts %}
+
+<script>
+	
+</script>
+	
+{% endblock %}

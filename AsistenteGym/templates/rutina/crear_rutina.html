@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %} R: Crear Rutina {% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6 col-md-6">
+			<div class="thumbnail">
+				<div class="ttitulo">
+					<div class="tletra">
+						<div class="letra">
+							<h3>C</h3>
+						</div>
+					</div>
+					<div class="titulo">rear rutina</div>
+				</div>
+				
+				<div class="caption text-justify">
+						
+					<form method="POST">
+						{% csrf_token %}
+						<p>
+						</p>
+						<div class="input-group">
+							<div class="input-group-addon">Nombre &nbsp; &nbsp; &nbsp;</div>
+							{{form.nombre}}
+						</div><span class="text-danger">{{form.nombre.errors}}</span><br>
+						<div class="input-group">
+							<div class="input-group-addon">Descripción</div>
+							{{form.descripcion}}
+						</div><span class="text-danger">{{form.descripcion.errors}}</span><br>
+
+						<button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+					</form>
+
+				</div>
+
+			</div>		
+		</div>
+
+		<div class="col-sm-6 col-md-6">
+			<div class="list-group">
+				<div class="thumbnail">
+					  <div class="ctitulo">
+					<div class="cletra">
+						
+					</div>
+					<div class="titulo">Recomendación</div>
+				</div>
+					  
+					<div class="caption text-justify">
+					  <p>
+					  	Si dedicas de 45 a 60 minutos por sesión, cinco veces a la semana a tu entrenamiento de musculación, podrás usar un esquema como el siguiente:<p>	
+
+						– Dia 1: pecho <br>	
+						– Dia 2: brazos, antebrazos <br>	
+						– Dia 3: espalda
+						– Dia 4: hombros y abdominales <br>
+						– Dia 5: piernas y pantorrillas <br>
+						<p>
+						Si solo puedes asistir al gimnasio una hora por día tres veces a la semana, deberás realizar mayor cantidad de ejercicios por sesión; un posible esquema de trabajo sería:</p>
+
+						– Dia 1: pecho, bíceps y pantorrillas <br>
+						– Dia 2: espalda, tríceps y abdominales <br>
+						– Dia 3: Piernas y hombros <br> <br>
+						<p>
+						El esquema de trabajo no solo dependerá del tiempo que le dediques a tu entrenamiento, debes considerar multíples factores entre los cuales vale destacar: entrenamiento previo, cantidad de grasa corporal, limitaciones médicas o físicas, constitución física y objetivos a lograr.</p>
+					  
+					  </div>
+				</div>
+			</div>
+		</div>
+</div>
+
+{% endblock %}

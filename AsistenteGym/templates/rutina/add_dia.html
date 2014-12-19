@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+
+{% block title %} R: {{rutina.nombre}} {% endblock %}
+{% block instructor %}
+	{% if usuario.tipo == 'instructor'%}
+        <li><a href="/registrar-evolucion/">Registrar evolución</a></li>
+        <li><a href="/lista-evolucion/">Lista de Evolución</a></li>
+      {% endif %}
+{% endblock %}
+{% block sesion %}
+	<ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle padding-minus" data-toggle="dropdown">
+          
+					<img src="{{ usuario.avatar }}" class="foto perfil">
+					<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="/usuario/{{usuario.username}}">Perfil</a></li>
+          <li class="divider"></li>
+          <li><a href="{% url 'users:logout' %}">Salir</a></li>
+        </ul>
+      </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6 col-md-6">
+			<div class="thumbnail">
+				<div class="rtitulo">
+					<div class="rletra">
+						<div class="letra">
+							<h3>R</h3>
+						</div>
+					</div>
+					<div class="titulo"> utina</div>
+				</div>
+				<h3 id="id_rutina" class="text-center" value="{{rutina.id}}" ><strong>{{rutina.nombre}}</strong></h3>
+				<div class="caption text-justify">
+						<div>
+					<strong>Descripción:</strong><strong class="subtitulo-jumbotron"> {{rutina.descripcion}}</strong>
+				</div>
+				
+					<div  class="contenido">
+						<p id="msm-dias" class="text-danger hidden">Día no disponible</p>
+						<select id="dias" class="form-control visible" name="s2">
+		
+						</select>
+					</div><br>
+
+					<button id="btn" class="btn btn-success" name="s2"><span class="glyphicon glyphicon-plus"></span> Agregar día </button>
+
+					<button id="btn-agregar" type="button" class="btn btn-success hidden" ><span class="glyphicon glyphicon-arrow-down"></span>Agregar</button>
+					<p></p>
+					<div>
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th class="success"><h4 class="text-success"><strong>Dias de entrenamiento</strong></h4></th>
+									<th class="success"></th>
+									<th class="success"></th>
+								</tr>
+							</thead>
+							<tbody id="tabla_dias">
+								
+							</tbody>
+						</table>
+
+					</div>
+
+					<a href="/rutina-detalle/{{rutina.id}}/">
+						<button class="btn btn-rutina"  ><span class="glyphicon glyphicon-eye-open"></span> Ver rutina</button>
+					</a>
+
+				</div>
+
+			</div>		
+		</div>
+
+		<div class="col-sm-6 col-md-6">
+			<div class="list-group">
+				<div class="thumbnail">
+					  <div class="etitulo">
+					<div class="eletra">
+						
+					</div>
+					<div class="titulo">Recomendación</div>
+				</div>
+					  
+					<div class="caption text-justify">
+					  <strong>Beneficios del descando</strong>
+					  <p>Entrenar de 3 a 4 veces a la semana te beneficiará de 3 maneras:</p>
+
+						<p><strong>Elevarás tus niveles de testosterona y minimizarás tus niveles de cortisol</strong>, lo qu ese traducirá en un cuerpo en estado anabólico, es decir en constante crecimiento muscular.</p>
+						<p><strong>Tu masa muscular crecerá más rápido</strong>, debido al exceso o acumulación intencional de calorías que vas a tener en tus días libres.</p>
+						<p><strong>Acudirás con muchísimo más ganas y energía</strong> a realizar tus entrenamientos, y eso es algo que no tiene precio, ya que sin motivación no lograrás ganar masa muscular.</p>
+
+					  
+					  </div>
+				</div>
+			</div>
+		</div>
+</div>
+{% endblock %}
+	<a href=""></a>
+{% block scripts %}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<script>
+
+		$(function(){
+			var_id =$("#id_rutina").attr("value");
+			//alert(var_id+' guardar ');
+			$.getJSON('/inicio-dia-ajax/',{'id' : var_id}, function(lista){
+                
+                var html='';
+					for (var i = 0; i< lista.length ; i++) {
+						html+= '<tr><td><h4>'+lista[i]+' </h4></td><td> <h4> <a href="/add-musculo/'+lista[i]+'/'+var_id+'"><span class="glyphicon glyphicon-eye-open"></span></a></h4>   </td><td> <h4> <a href="/delete-dia/'+lista[i]+'/'+var_id+'"><span class="glyphicon glyphicon-trash"></span></a></h4>   </td></tr>'
+					};
+
+					$('#tabla_dias').html(html);
+			});
+		});
+
+
+		$('#btn').on('click', HiceClick);
+		$('#btn-agregar').on('click', agreagarDia);
+		var bandera = 0;
+
+		function invisible(){
+			var btn = '<span class="glyphicon glyphicon-plus"></span> Agregar día';
+            var html = '<option value=""></option>';
+            $('#dias').html(html);
+			$('#btn').html(btn);
+			$('#btn-agregar').removeClass('btn btn-success visible');
+			$('#btn-agregar').addClass('btn btn-success hidden');
+
+			$('#btn').removeClass('btn btn-danger');
+			$('#btn').addClass('btn btn-success');
+		};
+
+		function HiceClick(){
+			//alert('akiii');
+			var_id =$("#id_rutina").attr("value");
+			$('.contenido').slideToggle();
+			if (bandera == 0) {
+				$.getJSON('/rutina-ajax/',{'id':var_id}, function(data){
+                var btn = '<span class="glyphicon glyphicon-remove"></span> Cancelar';
+                var html="";
+                	if (data.length > 0) {
+                		for (var i = 0; i< data.length ; i++) {
+						html += '<option id="dia_selec" value="'+data[i]+'">'+data[i]+'</option>'
+						};
+
+						$('#dias').removeClass('form-control hidden');
+						$('#dias').addClass('form-control visible');
+						$('#msm-dias').removeClass('text-danger visible');
+						$('#msm-dias').addClass('text-danger hidden');
+
+						$('#btn-agregar').removeClass('btn hidden');
+						$('#btn-agregar').addClass('btn btn-success visible');
+                	};
+                	if (data.length == 0) {
+                		$('#dias').removeClass('form-control visible');
+						$('#dias').addClass('form-control hidden');
+						$('#msm-dias').removeClass('text-danger hidden');
+						$('#msm-dias').addClass('text-danger visible');
+
+						$('#btn-agregar').removeClass('btn btn-success visible');
+						$('#btn-agregar').addClass('btn btn-success hidden');
+                	};
+
+					$('#dias').html(html);
+					$('#btn').html(btn);
+					
+					$('#btn').removeClass('btn btn-success');
+					$('#btn').addClass('btn btn-danger');
+
+					bandera = 1;
+            	});
+			};
+			if (bandera == 1) {
+				invisible();
+				bandera = 0;
+
+			};	
+		}
+
+		function agreagarDia(){
+			var_id =$("#id_rutina").attr("value");
+			nombre =$("#dias option:selected" ).text();
+			//alert(var_id+' guardar '+nombre);
+			$.getJSON('/add-dia-ajax/',{'id' : var_id, 'nombre' : nombre}, function(lista){
+                
+                var html='';
+					for (var i = 0; i< lista.length ; i++) {
+						html+= '<tr><td><h4>'+lista[i]+' </h4></td><td> <h4> <a href="/add-musculo/'+lista[i]+'/'+var_id+'"><span class="glyphicon glyphicon-eye-open"></span></a></h4>   </td><td> <h4> <a href="/delete-dia/'+lista[i]+'/'+var_id+'"><span class="glyphicon glyphicon-trash"></span></a></h4>   </td></tr>'
+					};
+
+					$('#tabla_dias').html(html);
+					//console.log(data[0].fields.slug);
+
+					$('.contenido').slideToggle();
+					invisible();
+					bandera = 0
+
+            	});
+			};
+			
+</script>
+{% endblock %}

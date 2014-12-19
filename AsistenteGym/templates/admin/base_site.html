@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'OLYMPUS asistente GYM' %}{% endblock %}
+
+{% block branding %}
+ <link rel="stylesheet" href="/static/css/tarjeta.css">
+ <nav class="contentendor-logo">
+   <h2 id="site-name"><span class="logo-admin">OLYMPUS</span><span class="logo-nombre-admin">&nbsp;asistente</span><span class="logo-admin">&nbsp;GYN</span></span> {% trans '&nbsp;' %}</h2>
+   </nav>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

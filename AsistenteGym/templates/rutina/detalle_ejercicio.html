@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %} E: {{ej.nombre}} {% endblock %}
+
+{% block sesion %}
+	<ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle padding-minus" data-toggle="dropdown">
+          
+					<img src="{{ usuario.avatar }}" class="foto perfil">
+					<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="/usuario/{{usuario.username}}">Perfil</a></li>
+          <li class="divider"></li>
+          <li><a href="{% url 'users:logout' %}">Salir</a></li>
+        </ul>
+      </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="thumbnail">
+
+				<div class="etitulo">
+						<div class="eletra">
+							<div class="letra">
+								<h3>E</h3>
+							</div>
+						</div>
+						<div class="titulo"> jercicio</div>
+					</div>
+				
+				<div id="datos" class="datos">
+						<div class="caption text-justify">
+
+						<h4 class="text-info text-center"><strong>{{ej.nombre}}</strong></h4>
+						<p class="text-center">
+						<img src="{{ ej.imagen }} " class="imagen img-thumbnail img-responsive" >
+						</p>
+						<hr>
+						<p>
+						<strong class="subtitulo-jumbotron"> Músculo:&nbsp;</strong>
+						 {{ej.musculo.nombre}}
+						 </p>
+						<p>
+						<strong class="subtitulo-jumbotron"> Descripción:&nbsp;</strong>
+						<blockquote>
+						 {{ej.descripcion}}
+						 </blockquote>
+						 </p>
+					<hr>
+					<p>
+						<a href="/rutina-detalle/{{rutina.id}}/">
+							<button class="btn btn-ejercicio"  ><span class="glyphicon glyphicon-circle-arrow-left"></span> Ver rutina</button>
+						</a>
+					</p>
+
+				</div>
+						
+				</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

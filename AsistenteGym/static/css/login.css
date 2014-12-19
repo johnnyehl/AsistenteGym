@@ -1,0 +1,90 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300');
+
+body {
+  background: url('/static/img/fondo_gym.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color:#fff;
+    background-repeat: repeat-y;
+    background-repeat: repeat-x;
+    background-color:#333;
+    font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
+}
+.container{
+      padding: 0;
+      
+}
+
+a:link, a:visited {
+  color:#eee;
+}
+
+.block {
+  background-color:rgba(0,0,0,0.2);
+    height:370px;
+    padding-left:12px;
+    padding-right:12px;
+}
+
+.btn-flat {
+    font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
+  border-radius:0px;
+    border-width:0;
+    background-image:none;
+    padding:16px;
+    margin:0 auto;
+    margin-top:15px;
+    width:70%;
+    font-size:20pt;
+}
+
+
+.thumbnail-login {
+
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+  color: white;
+  /*opacity: 0.5;*/
+
+  padding-top: 1.2em;
+  background: #22bce0;
+ /* border-radius: 50%;*/
+  border-color: #7A7A7A;
+  border: none;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.logo-login {
+  font-size: 36px;
+  font-style: italic;
+  font-weight: bold;
+  text-shadow: 2.5px 2.5px 2.5px black;
+  color: #BE5FB6;
+  font-weight: bold;
+
+  /*border-left: 6px solid white;
+  border-right: 6px solid white;*/
+}
+.logo-nombre-login {
+  font-size: 38px;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: 2.5px 2.5px 2.5px black;
+  color:  #FFAC33;
+  
+  /*border-left: 6px solid white;
+  border-right: 6px solid white;*/
+}
+.fondo-logo {  
+  background-color:rgba(0,0,0,0.2);
+}
+.fondo-logo-2 {  
+  background-color:rgba(0,0,0,0.2);
+}
+
+.letra {
+  text-shadow: 2.5px 2.5px 2.5px black;
+}

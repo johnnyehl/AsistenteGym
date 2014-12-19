@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} R: Crear Rutina {% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6 col-md-6">
+			<div class="thumbnail">
+				<div class="ttitulo">
+					<div class="tletra">
+						<div class="letra">
+							<h3>C</h3>
+						</div>
+					</div>
+					<div class="titulo">rear rutina</div>
+				</div>
+				
+				<div class="caption text-justify">
+						
+					<form method="POST">
+						{% csrf_token %}
+						<p>
+						</p>
+						<div class="input-group">
+							<div class="input-group-addon">Nombre &nbsp; &nbsp; &nbsp;</div>
+							{{form.nombre}}
+						</div><br>
+						<div class="input-group">
+							<div class="input-group-addon">Descripción</div>
+							{{form.descripcion}}
+						</div><br>
+
+						<button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+					</form>
+
+				</div>
+
+			</div>		
+		</div>
+
+		<div class="col-sm-6 col-md-6">
+			<div class="recomendacion">
+				<h4 class="titulo text-center" ><strong>Recomendación para crear tu rutina</strong></h4>
+			</div>	
+		</div>
+</div>
+
+{% endblock %}

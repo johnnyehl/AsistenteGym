@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{% block title %} R: {{d_e.dia.nombre}} {% endblock %}
+
+{% block instructor %}
+	{% if usuario.tipo == 'instructor'%}
+        <li><a href="/registrar-evolucion/">Registrar evolución</a></li>
+        <li><a href="/lista-evolucion/">Lista de Evolución</a></li>
+      {% endif %}
+{% endblock %}
+
+{% block sesion %}
+	<ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle padding-minus" data-toggle="dropdown">
+          
+					<img src="{{ usuario.avatar }}" class="foto perfil">
+					<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="/usuario/{{usuario.username}}">Perfil</a></li>
+          <li class="divider"></li>
+          <li><a href="{% url 'users:logout' %}">Salir</a></li>
+        </ul>
+      </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6 col-md-6">
+			<div class="thumbnail">
+				<div class="ctitulo">
+					<div class="cletra">
+							<div class="letra">
+							 	<h3>D</h3>
+							</div>
+					</div>
+					<div class="titulo">ía</div>
+				</div>
+				<div id="rutina_id" class="hidden" value="{{d_e.rutina.id}}"></div>
+				<div id="dia_nombre" class="hidden" value="{{d_e.dia.nombre}}"></div>
+				<h3 id="id_dia_entrenamiento" class="text-center" value="{{d_e.id}}" ><strong>{{d_e.dia.nombre}}</strong></h3>
+				<div class="caption text-justify">
+				<div>
+					<strong>Rutina:</strong><strong class="subtitulo-jumbotron"> {{d_e.rutina.nombre}}</strong>
+				</div>
+				
+					<div  class="contenidos">
+						<p id="msm-dias" class="text-danger hidden">Músculo no disponible</p>
+						<select id="dias" class="form-control visible" name="s2">
+		
+						</select>
+					</div><br>
+
+					<button id="btn" class="btn btn-success" name="s2"><span class="glyphicon glyphicon-plus"></span> Agregar músculo </button>
+
+					<button id="btn-agregar" type="button" class="btn btn-success hidden" ><span class="glyphicon glyphicon-arrow-down"></span>Agregar</button>
+					<p></p>
+					<div>
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th class="warning"><h4 class="text-warning"><strong>Músculo a entrenar</strong></h4></th>
+									<th class="warning"></th>
+									<th class="warning"></th>
+								</tr>
+							</thead>
+							<tbody id="tabla_dias">
+								
+							</tbody>
+						</table>
+
+					</div>
+					
+					<a href="/rutina-detalle/{{d_e.rutina.id}}/">
+						<button class="btn btn-dia"  ><span class="glyphicon glyphicon-eye-open"></span> Ver rutina</button>
+					</a>
+
+				</div>
+
+			</div>		
+		</div>
+
+		<div class="col-sm-6 col-md-6">
+			<div class="list-group">
+				<div class="thumbnail">
+					  <div class="ttitulo">
+					<div class="tletra">
+						
+					</div>
+					<div class="titulo">Recomendación</div>
+				</div>
+					  
+					<div class="caption text-justify">
+					<p><strong>cuánto tiempo debemos descansar entre cada serie?</strong></p>
+					  <p>
+					  	Normalmente se nos suele recomendar descansar un minuto entre cada serie, pero esto es muy relativo, ya que dependerá mucho de lo que queremos lograr con los entrenamientos. El descanso entre series se utiliza para oxigenar las fibras ya que la respiración es mucho más normalizada que mientras estamos haciendo el ejercicio en cuestión. Además, ese tiempo nos servirá para recuperarnos y volver a retomar el ejercicio con fuerza. </p>
+					  	<p>
+El tiempo de descanso variará mucho dependiendo de los objetivos que tengamos y del tipo de entrenamiento que realicemos. Si estamos en una fase de crecimiento muscular en la que las series que realizamos son descendentes en número de repeticiones y ascendentes en carga, el tiempo que debemos destinar a relajarnos entre series será mayor a un minuto, ya que lo fundamental es recuperarnos y oxigenar bien el músculo para que obtenga la energía necesaria para hacer frente a esta forma de entrenamiento. Aunque los tiempos varían mucho en cada persona, pues la capacidad de recuperación no es la misma en todos los individuos.<p>	
+
+					  
+					  </div>
+				</div>
+			</div>	
+		</div>
+</div>
+{% endblock %}
+	<a href=""></a>
+{% block scripts %}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<script>
+
+		dia_nombre=$("#dia_nombre").attr("value");
+		rutina_id =$("#rutina_id").attr("value");
+
+		$(function(){
+			 
+			 caragar();
+			
+		});
+
+
+		$('#btn').on('click', HiceClick);
+		$('#btn-agregar').on('click', agreagarDia);
+		var bandera = 0;
+
+		function caragar(){
+			var_id =$("#id_dia_entrenamiento").attr("value");
+			//alert(var_id+' guardar ');
+			$.getJSON('/inicio-musculo-ajax/',{'id' : var_id}, function(lista){
+                
+                var html='';
+					for (var i = 0; i< lista.length ; i++) {
+						html+= '<tr><td><h4>'+lista[i]+' </h4></td><td> <h4> <a href="/add-ejercicio/'+lista[i]+'/'+var_id+'"><span class="glyphicon glyphicon-eye-open"></span></a></h4>   </td><td> <h4> <a href="/delete-musculo/'+lista[i]+'/'+var_id+'/'+rutina_id+'/'+dia_nombre+'"><span class="glyphicon glyphicon-trash"></span></a></h4>   </td></tr>'
+					};
+
+					$('#tabla_dias').html(html);
+			});
+		};
+
+		function invisible(){
+			var btn = '<span class="glyphicon glyphicon-plus"></span> Agregar músculo';
+            var html = '<option value=""></option>';
+            $('#dias').html(html);
+			$('#btn').html(btn);
+			$('#btn-agregar').removeClass('btn btn-success visible');
+			$('#btn-agregar').addClass('btn btn-success hidden');
+
+			$('#btn').removeClass('btn btn-danger');
+			$('#btn').addClass('btn btn-success');
+		};
+
+		function HiceClick(){
+			//alert('akiii');
+			var_id =$("#id_dia_entrenamiento").attr("value");
+			$('.contenidos').slideToggle();
+			if (bandera == 0) {
+				$.getJSON('/lista-musculo-ajax/',{'id':var_id}, function(data){
+                var btn = '<span class="glyphicon glyphicon-remove"></span> Cancelar';
+                var html="";
+                	if (data.length > 0) {
+                		for (var i = 0; i< data.length ; i++) {
+						html += '<option id="dia_selec" value="'+data[i]+'">'+data[i]+'</option>'
+						};
+
+						$('#dias').removeClass('form-control hidden');
+						$('#dias').addClass('form-control visible');
+						$('#msm-dias').removeClass('text-danger visible');
+						$('#msm-dias').addClass('text-danger hidden');
+
+						$('#btn-agregar').removeClass('btn hidden');
+						$('#btn-agregar').addClass('btn btn-success visible');
+                	};
+                	if (data.length == 0) {
+                		$('#dias').removeClass('form-control visible');
+						$('#dias').addClass('form-control hidden');
+						$('#msm-dias').removeClass('text-danger hidden');
+						$('#msm-dias').addClass('text-danger visible');
+
+						$('#btn-agregar').removeClass('btn btn-success visible');
+						$('#btn-agregar').addClass('btn btn-success hidden');
+                	};
+
+					$('#dias').html(html);
+					$('#btn').html(btn);
+					
+					$('#btn').removeClass('btn btn-success');
+					$('#btn').addClass('btn btn-danger');
+
+					bandera = 1;
+            	});
+			};
+			if (bandera == 1) {
+				invisible();
+				bandera = 0;
+
+			};	
+		}
+
+		function agreagarDia(){
+			
+			var_id =$("#id_dia_entrenamiento").attr("value");
+			nombre =$("#dias option:selected" ).text();
+			$.getJSON('/add-musculo-ajax/',{'id' : var_id, 'nombre' : nombre}, function(lista){
+                /*
+                var html='';
+					for (var i = 0; i< lista.length ; i++) {
+						html+= '<tr><td><h4>'+lista[i]+' </h4></td><td> <h4> <a href="/add-musculo/'+lista[i]+'/'+var_id+'"><span class="glyphicon glyphicon-eye-open"></span></a></h4>   </td><td> <h4> <a href="/delete-musculo/'+lista[i]+'/'+var_id+'/'+rutina_id+'/'+dia_nombre+'"><span class="glyphicon glyphicon-trash"></span></a></h4>   </td></tr>'
+					};
+
+					$('#tabla_dias').html(html);
+					//console.log(data[0].fields.slug);*/
+					caragar();
+
+					$('.contenidos').slideToggle();
+					invisible();
+					bandera = 0
+
+            	});
+			};
+			
+</script>
+
+{% endblock %}

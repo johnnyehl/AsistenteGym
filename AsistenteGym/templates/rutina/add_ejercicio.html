@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+
+{% block title %} R: {{m_e.musculo.nombre}} {% endblock %}
+{% block instructor %}
+	{% if usuario.tipo == 'instructor'%}
+        <li><a href="/registrar-evolucion/">Registrar evolución</a></li>
+        <li><a href="/lista-evolucion/">Lista de Evolución</a></li>
+      {% endif %}
+{% endblock %}
+{% block sesion %}
+	<ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle padding-minus" data-toggle="dropdown">
+          
+					<img src="{{ usuario.avatar }}" class="foto perfil">
+					<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="/usuario/{{usuario.username}}">Perfil</a></li>
+          <li class="divider"></li>
+          <li><a href="{% url 'users:logout' %}">Salir</a></li>
+        </ul>
+      </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6 col-md-6">
+			<div class="thumbnail">
+				<div class="mtitulo">
+					<div class="mletra">
+							<div class="letra">
+							 	<h3>M</h3>
+							</div>
+					</div>
+					<div class="titulo">úsculo</div>
+				</div>
+				<div id="rutina_id" class="hidden" value="{{d_e.rutina.id}}"></div>
+				<div id="musculo_id" class="hidden" value="{{m_e.musculo.id}}"></div>
+				<h3 id="id_musculo_entrenamiento" class="text-center" value="{{m_e.id}}" ><strong>{{m_e.musculo.nombre}}</strong></h3>
+				
+				<div class="caption text-justify">
+				<div>
+					<strong>Rutina:</strong><strong class="subtitulo-jumbotron"> {{m_e.dia_entrenamiento.rutina.nombre}}</strong><br>
+					<strong>Día:</strong><strong class="subtitulo-jumbotron"> {{m_e.dia_entrenamiento.dia.nombre}}</strong>
+				</div>
+
+					<div id="contenedor" class="contenedor">
+						<div class="input-group">
+							<div class="input-group-addon">Ejercicio</div>
+							<select id="dias" class="form-control visible" name="s2">
+			
+							</select>
+						</div><br>
+						<div class="input-group">
+						 	<div class="input-group-addon">Serie</div>
+							<select id="serie" class="form-control visible" name="serie">
+							  	<option>2</option>
+							  	<option>3</option>
+							  	<option>4</option>
+							  	<option>6</option>
+							</select>
+							<div class="input-group-addon">Repeticion</div>
+							<select id="repeticion" class="form-control visible" name="serie">
+							  	<option>8</option>
+							  	<option>10</option>
+							  	<option>13</option>
+							  	<option>15</option>
+							  	<option>20</option>
+							</select>
+						</div><br>
+						<div class="input-group">
+							<div class="input-group-addon">Peso</div>
+								<select id="peso" class="form-control visible" name="serie">
+								  	<option>05</option>
+								  	<option>10</option>
+								  	<option>15</option>
+								  	<option>20</option>
+								  	<option>25</option>
+								  	<option>30</option>
+								  	<option>35</option>
+								  	<option>40</option>
+								  	<option>45</option>
+								  	<option>50</option>
+								  	<option>55</option>
+								  	<option>60</option>
+								  	<option>65</option>
+								  	<option>70</option>
+								  	<option>75</option>
+								  	<option>80</option>
+								  	<option>85</option>
+								  	<option>90</option>
+								  	<option>95</option>
+								  	<option>100</option>
+								</select>
+								<div class="input-group-addon">Kg</div>
+						</div><br>
+						<div class="input-group">
+							<div class="input-group-addon">Nivel</div>
+							<label id="nivel" class="form-control visible" name="s2"> Principiante</label>
+						</div>
+					</div><br>
+
+					<button id="btn" class="btn btn-success" name="s2"><span class="glyphicon glyphicon-plus"></span> Agregar ejercicio</button>
+
+					<button id="btn-agregar" type="button" class="btn btn-success hidden" ><span class="glyphicon glyphicon-arrow-down"></span>Agregar</button>
+					<p></p>
+					<div>
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th class="danger"><h4 class="text-danger"><strong>Ejercicio</strong></h4></th>
+									<th class="warning"><h4 class="text-warning"><strong>Serie</strong></h4></th>
+									<th class="info"><h4 class="text-info"><strong>Repetición</strong></h4></th>
+									<th class="danger"><h4 class="text-danger"><strong>Peso</strong></h4></th>
+									
+									<th class="warning"> <h4 class="text-warning"><strong> </strong></h4></th>
+								</tr>
+							</thead>
+							<tbody id="tabla_dias">
+								
+							</tbody>
+						</table>
+
+					</div>
+					<a href="/rutina-detalle/{{ m_e.dia_entrenamiento.rutina.id }}/">
+						<button class="btn btn-musculo"  ><span class="glyphicon glyphicon-eye-open"></span> Ver rutina</button>
+					</a>
+				</div>
+
+			</div>		
+		</div>
+		
+
+		<div class="col-md-6">
+					<div class="list-group">
+					  <a href="#" class="list-group-item active">
+					    {{m_e.musculo.nombre}}
+					  </a>
+					  <img src="{{m_e.musculo.imagen}}" class="img-responsive" alt="">
+					</div>
+					
+				</div>
+
+
+
+	</div>
+</div>
+{% endblock %}
+	<a href=""></a>
+{% block scripts %}
+<!--
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> -->
+
+<script>
+
+		dia_nombre=$("#dia_nombre").attr("value");
+		rutina_id =$("#rutina_id").attr("value");
+
+		$(function(){
+			
+			var_id =$("#id_musculo_entrenamiento").attr("value");
+
+			$.ajax({
+				data: {'id' : var_id},
+				url: '/inicio-ejercicio-ajax',
+				type: 'get',
+				success: function(data){
+					var html = '';
+					for(var i=0; i<data.length; i++){
+						//alert(data[i].fields.ejercicio+'--'+data[i].fields.serie+'rr '+data[i].fields.repeticion+'pp '+data[i].fields.peso+'nnr '+data[i].fields.nivel)
+							html+= '<tr><td class="danger"> <strong> '+data[i].fields.ejercicio+ '</strong> </td><td class="warning"><strong>'+data[i].fields.serie+' </strong></td><td class="info"><strong>'+data[i].fields.repeticion+' </strong></td><td class="danger"><strong>'+data[i].fields.peso+' </strong></td><td class="warning">  <a href="/delete-ejercicio/{{m_e.musculo.nombre}}/{{m_e.dia_entrenamiento.id}}/'+data[i].pk+'/"><strong><span class="glyphicon glyphicon-trash"></span></strong></a>   </td></tr>'
+
+
+					}
+
+					$('#tabla_dias').html(html);
+
+				}
+			});
+		});
+
+
+		$('#btn').on('click', HiceClick);
+		$('#btn-agregar').on('click', agreagarDia);
+		var bandera = 0;
+
+		
+
+		function invisible(){
+			var btn = '<span class="glyphicon glyphicon-plus"></span> Agregar ejercicio';
+            var html = '<option value=""></option>';
+            $('#dias').html(html);
+			$('#btn').html(btn);
+			$('#btn-agregar').removeClass('btn btn-success visible');
+			$('#btn-agregar').addClass('btn btn-success hidden');
+
+			$('#btn').removeClass('btn btn-danger');
+			$('#btn').addClass('btn btn-success');
+		};
+
+		function HiceClick(){
+
+			var_id =$("#id_musculo_entrenamiento").attr("value");
+			musculo =$("#musculo_id").attr("value");
+			$('.contenedor').slideToggle();
+			if (bandera == 0) {
+				$.getJSON('/lista-ejercicio-ajax/',{'id':var_id, 'musculo':musculo}, function(data){
+                var btn = '<span class="glyphicon glyphicon-remove"></span> Cancelar';
+                var html="";
+                	if (data.length > 0) {
+                		for (var i = 0; i< data.length ; i++) {
+						html += '<option id="dia_selec" value="'+data[i]+'">'+data[i]+'</option>'
+						};
+
+						$('#dias').removeClass('form-control hidden');
+						$('#dias').addClass('form-control visible');
+						$('#msm-dias').removeClass('text-danger visible');
+						$('#msm-dias').addClass('text-danger hidden');
+
+						$('#btn-agregar').removeClass('btn hidden');
+						$('#btn-agregar').addClass('btn btn-success visible');
+						//$('.contenedor').slideToggle();
+                	};
+                	if (data.length == 0) {
+                		alert("Ejerccios no disponible")
+                		
+                		$('#dias').removeClass('form-control visible');
+						$('#dias').addClass('form-control hidden');
+						$('#msm-dias').removeClass('text-danger hidden');
+						$('#msm-dias').addClass('text-danger visible');
+
+						$('#btn-agregar').removeClass('btn btn-success visible');
+						$('#btn-agregar').addClass('btn btn-success hidden');
+                	};
+
+					$('#dias').html(html);
+					$('#btn').html(btn);
+					
+					$('#btn').removeClass('btn btn-success');
+					$('#btn').addClass('btn btn-danger');
+
+					bandera = 1;
+            	});
+			};
+			if (bandera == 1) {
+				invisible();
+				bandera = 0;
+
+			};	
+		}
+
+		function agreagarDia(){
+			
+			var_id =$("#id_musculo_entrenamiento").attr("value");
+			ejercicio =$("#dias option:selected" ).text();
+			serie =$("#serie option:selected" ).text();
+			repeticion =$("#repeticion option:selected" ).text();
+			peso =$("#peso option:selected" ).text();
+			nivel =$("#nivel" ).text();
+			//alert(nivel)
+			
+			$.ajax({
+				data: {'id' : var_id, 'ejercicio' : ejercicio, 'serie': serie, 'repeticion':repeticion, 'peso':peso, 'nivel': nivel},
+				url: '/add-ejercicio-ajax',
+				type: 'get',
+				success: function(data){
+					//alert('{{m_e.id}}');
+					var html = '';
+					for(var i=0; i<data.length; i++){
+						//alert(data[i].fields.ejercicio+'--'+data[i].fields.serie+'rr '+data[i].fields.repeticion+'pp '+data[i].fields.peso+'nnr '+data[i].fields.nivel)
+							html+= '<tr><td class="danger"> <strong> '+data[i].fields.ejercicio+ '</strong> </td><td class="warning"><strong>'+data[i].fields.serie+' </strong></td><td class="info"><strong>'+data[i].fields.repeticion+' </strong></td><td class="danger"><strong>'+data[i].fields.peso+' </strong></td><td class="warning">  <a href="/delete-ejercicio/{{m_e.musculo.nombre}}/{{m_e.dia_entrenamiento.id}}/'+data[i].pk+'/"><strong><span class="glyphicon glyphicon-trash"></span></strong></a>   </td></tr>'
+
+
+					}
+
+					$('#tabla_dias').html(html);
+					//console.log(data[0].fields.slug);
+
+					$('.contenedor').slideToggle();
+					invisible();
+					bandera = 0
+				}
+			});
+	
+			
+			};
+
+		$("#peso").click(function(){
+			peso =$("#peso option:selected" ).text();
+            if(peso <= 50)
+            {
+                $("#nivel" ).text("Principiante");
+            }
+            if(peso > 50 && peso <= 80)
+            { 
+                $("#nivel" ).text("Intermedio");
+            }
+            if(peso > 80 )
+            { 
+                $("#nivel" ).text("Avanzado");
+            }
+        });
+			
+</script>
+
+{% endblock %}

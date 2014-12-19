@@ -1,0 +1,339 @@
+/* TARJETA INFORMACION */
+.ititulo {
+  background: #7870CB;
+  font-size: 18px;
+  font-style: italic;
+  text-shadow: 1px 1px 0px #000;
+  color: #fff;
+  margin: 0;
+  height: 40px;
+
+}
+.ititulo .titulo {
+  padding: 0.6em 0 0 40.5px;
+}
+.ititulo .iletra { /* circulo*/
+  margin: 0.1em 0 0 0.2em;
+  position: absolute;
+}
+.ititulo .iletra .letra {
+  border: 1px solid #fff;
+  height: 35px;
+  width: 35px;
+  background: #7870CB;
+  padding: 0.32em 0.2em 0 0.75em;
+  border-radius: 50%;
+}
+.ititulo .iletra .letra h3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* TARJETA MUSCULO */
+.mtitulo {
+  background: #9A2F49;
+  font-size: 18px;
+  font-style: italic;
+  text-shadow: 1px 1px 0px #000;
+  color: #fff;
+  margin: 0;
+  height: 40px;
+
+}
+.mtitulo .titulo {
+  padding: 0.6em 0 0 40.5px;
+}
+.mtitulo .mletra { /* circulo*/
+  margin: 0.1em 0 0 0.2em;
+  position: absolute;
+}
+.mtitulo .mletra .letra {
+  border: 1px solid #fff;
+  height: 35px;
+  width: 35px;
+  background: #9A2F49;
+  padding: 0.32em 0.2em 0 0.42em;
+  border-radius: 50%;
+}
+.mtitulo .mletra .letra h3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* TARJETA DIA */
+.ctitulo {
+  background: #BE5FB6;
+  font-size: 18px;
+  font-style: italic;
+  text-shadow: 1px 1px 0px #000;
+  color: #fff;
+  margin: 0;
+  height: 40px;
+
+}
+.ctitulo .titulo {
+  padding: 0.6em 0 0 40.5px;
+}
+.ctitulo .cletra { /* circulo*/
+  margin: 0.1em 0 0 0.2em;
+  position: absolute;
+}
+.ctitulo .cletra .letra {
+  border: 1px solid #fff;
+  height: 35px;
+  width: 35px;
+  background: #BE5FB6;
+  padding: 0.32em 0.2em 0 0.53em;
+  border-radius: 50%;
+}
+.ctitulo .cletra .letra h3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* cabecera rutina */
+.rtitulo {
+  background: #7870CB;
+  font-size: 18px;
+  font-style: italic;
+  text-shadow: 1px 1px 0px #000;
+  color: #fff;
+  margin: 0;
+  height: 40px;
+
+}
+.rtitulo .titulo {
+  padding: 0.6em 0 0 40.5px;
+}
+.rtitulo .rletra { /* circulo*/
+  margin: 0.1em 0 0 0.2em;
+  position: absolute;
+}
+.rtitulo .rletra .letra {
+  border: 1px solid #fff;
+  height: 35px;
+  width: 35px;
+  background: #7870CB; /*fondo circulo */
+  padding: 0.3em 0.2em 0 0.45em;
+  border-radius: 50%;
+}
+.rtitulo .rletra .letra h3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* cabecera crear rutina */
+.ttitulo {
+  background: #548899;
+  font-size: 18px;
+  font-style: italic;
+  text-shadow: 1px 1px 0px #000;
+  color: #fff;
+  margin: 0;
+  height: 40px;
+
+}
+.ttitulo .titulo {
+  padding: 0.6em 0 0 40.5px;
+}
+.ttitulo .tletra { /* circulo*/
+  margin: 0.1em 0 0 0.2em;
+  position: absolute;
+}
+.ttitulo .tletra .letra {
+  border: 1px solid #fff;
+  height: 35px;
+  width: 35px;
+  background: #548899; /*fondo circulo */
+  padding: 0.3em 0.2em 0 0.45em;
+  border-radius: 50%;
+}
+.ttitulo .tletra .letra h3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+/* cabecera detalle ejercicio */
+.etitulo {
+  background: #DD4F24;
+  font-size: 18px;
+  font-style: italic;
+  text-shadow: 1px 1px 0px #000;
+  color: #fff;
+  margin: 0;
+  height: 40px;
+
+}
+.etitulo .titulo {
+  padding: 0.6em 0 0 40.5px;
+}
+.etitulo .eletra { /* circulo*/
+  margin: 0.1em 0 0 0.2em;
+  position: absolute;
+}
+.etitulo .eletra .letra {
+  border: 1px solid #fff;
+  height: 35px;
+  width: 35px;
+  background: #DD4F24; /*fondo circulo */
+  padding: 0.3em 0.2em 0 0.53em;
+  border-radius: 50%;
+}
+.etitulo .eletra .letra h3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+/***** PAQUETES STYLE */
+
+.ptitulo {
+  background: #7870CB;
+  font-size: 22px;
+ /* font-style: italic;*/
+  font-weight: bold;
+  text-shadow: 1px 1px 0px #000;
+  color: #fff;
+  margin: 0;
+  height: 68px;
+
+}
+.ptitulo .titulo {
+  padding: 0;
+  text-align: center;
+}
+
+.ptitulo .letra h3 {
+  padding-top: 0.2em;
+  padding-left: 0.3em;
+  color: #f0ad4e;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: none;
+
+  margin: 0;
+}
+
+
+/*promocion*/
+.prtitulo {
+  background: #5BC0DE;
+  font-size: 22px;
+ /* font-style: italic;*/
+  font-weight: bold;
+  text-shadow: 1px 1px 0px #000;
+  color: #7870CB;
+  margin: 0;
+  height: 78px;
+   /*border-left: 6px solid white;
+  border-right: 6px solid white;*/
+
+}
+.prtitulo .titulo {
+  padding-left: 7.6em;
+  padding-top: 1em;
+}
+.prtitulo .prletra { /* circulo*/
+  margin-left: 5em;
+  margin-top: 0.2em;
+  position: absolute;
+}
+.prtitulo .prletra .letra {
+  /*border: 1px solid #DC0000;*/
+  /*shadow: 3.5px 3.5px 3.5px #000;*/
+  height: 50px;
+  width: 50px;
+  background: #5BC0DE; /*fondo circulo */
+  padding: 0.2em 0.2em 0 0.45em;
+  border-radius: 50%;
+}
+.prtitulo .prletra .letra h3 {
+  color: #DC0000;
+  text-shadow: 3.5px 3.5px 3.5px #BE5FB6;
+  font-size: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*Costo*/
+.precio {
+  padding-top: 0.5em;
+  background: #DD4F24;
+  font-size: 30px;
+ /* font-style: italic;*/
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  text-align: center;
+  height: 78px;
+  /*border-left: 6px solid white;
+  border-right: 6px solid white;*/
+}
+.logo {
+  font-size: 15px;
+ /* font-style: italic;*/
+  font-weight: bold;
+  text-shadow: 3.5px 3.5px 3.5px black;
+  color: #BE5FB6;
+  /*border-left: 6px solid white;
+  border-right: 6px solid white;*/
+}
+.logo-nombre {
+  font-size: 17px;
+ /* font-style: italic;*/
+ 
+  text-shadow: 2.5px 2.5px 2.5px black;
+  color:  #FFAC33;
+  /*border-left: 6px solid white;
+  border-right: 6px solid white;*/
+}
+.contentendor-logo{
+  margin: 0;
+  padding-left: 2em;
+  background: #444444;
+  height: 40px;
+}
+
+.logo-admin {
+  font-size: 18px;
+ /* font-style: italic;*/
+  font-weight: bold;
+  text-shadow: 3.5px 3.5px 3.5px black;
+  color: #BE5FB6;
+  /*border-left: 6px solid white;
+  border-right: 6px solid white;*/
+}
+.logo-nombre-admin {
+  font-size: 20px;
+ /* font-style: italic;*/
+ 
+  text-shadow: 2.5px 2.5px 2.5px black;
+  color:  #FFAC33;
+  /*border-left: 6px solid white;
+  border-right: 6px solid white;*/
+}

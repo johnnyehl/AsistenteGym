@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %} R: Lista {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}	
+			
+	<div class="container">
+		<div id="mensaje"></div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="thumbnail">
+					<div class="rtitulo">
+						<div class="rletra">
+							<div class="letra">
+								<h3>R</h3>
+							</div>
+						</div>
+						<div class="titulo"> utinas</div>
+					</div>
+						{{longitud}}
+						{% for rutina in rutinas %}
+							{% if user == rutina.user %}
+								<div id="datos" class="datos">
+									<div class="caption text-justify">
+										<h4 class="text-info"><b>{{ rutina.nombre }}</b></h4>
+										<p>
+											<strong class="subtitulo-jumbotron">Descripción:</strong> {{ rutina.descripcion }}
+											
+										</p>
+									</div>
+								</div>
+								
+							<blockquote class="bloquesito">
+							<a href="/rutina-detalle/{{ rutina.id }}/">
+							  <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></button></a>
+							
+							<a href="/edit-rutina/{{ rutina.id }}/">
+							  <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button></a>
+
+							<a href="/delete-rutina/{{ rutina.id }}/">
+							  <button type="button"  class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
+
+							  <p class="bg-success bg-fecha-customize">Publicado el: <span> {{rutina.created|date:"d M Y"}}</span></p>
+							</blockquote>
+
+						{% endif %}
+						
+					{% endfor %}
+					<hr>
+					<p class="text-right">
+					<a href="/crear-rutina/" >
+				<button class="btn btn-rutina "><span class="glyphicon glyphicon-plus"></span> Crear Rutina</button></a>&nbsp;&nbsp;</p>
+				<hr>
+				</div>
+				
+					
+				
+				</div>
+				<div class="col-md-6">
+					<div class="list-group">
+					  <a  class="list-group-item active">
+					    Ejercicios
+					  </a>
+					  {% for ejercicio in ejercicios %}
+					  <a href="/ejercicio/{{ejercicio.id}}" class="list-group-item"><img src=" {{ejercicio.imagen}}" width="130" height="100" alt=""> &nbsp;&nbsp; {{ejercicio.nombre}}  </a>
+
+					 
+					  {% endfor %}
+					</div>
+					
+				</div>
+		</div>
+	</div>
+
+
+
+{% else %}
+
+<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=/">
+
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+	$(function(){
+			 var html='';
+			$.getJSON('/validar-matricula-ajax/', function(data){
+
+				if (data=='True') {
+
+					html += '<div class="bg-danger" ><p class="text-center"><strong class="text-danger text-center">Hoy vencio tu matrícula</strong></p></div>'
+				};
+
+				$('#mensaje').html(html);
+				
+
+				});
+			});
+		
+</script>
+{% endblock %}
+
+

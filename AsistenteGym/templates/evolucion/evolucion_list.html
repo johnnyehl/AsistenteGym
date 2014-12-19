@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %} R: {{rutina.nombre}} {% endblock %}
+
+{% block content %}
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="thumbnail">
+
+					<div class="ctitulo">
+						<div class="cletra">
+							<div class="letra">
+								<h3>E </h3>
+							</div>
+						</div>
+						<div class="titulo"> volución registrado por {{user.first_name}}</div>
+					</div>
+
+					
+
+					{% for evolucion in evoluciones %}
+								
+							{% if evolucion.instructor == user.id  %}
+							<div id="datos" class="datos">
+								
+								<div class="caption text-justify">
+									<span class="list-group-item"><p>
+										<div class="row">
+										<div class="col-md-2 col-sm-4 col-xs-4">
+											<blockquote class="cuadro">
+											<p class="text-info text-center">
+												 <img src="{{evolucion.user.avatar}}" width="60" height="64"  alt=""></p>
+											</blockquote>
+											</div>
+											<div class="col-md-2 col-sm-4 col-xs-4">
+											<blockquote class="cuadro">
+												<p class="text-info text-center"><b>Usuario:</b></p> <h4 class="text-center">{{evolucion.user.username}}</h4>
+												</blockquote>
+											</div>
+
+											<div class="col-md-2 col-sm-4 col-xs-4">
+											<blockquote class="cuadro">
+												<p class="text-info text-center"><b>Creado el:</b><h4 class="text-center">{{evolucion.created|date:"d M Y"}}</h4> </p>
+												</blockquote>
+											</div>
+												
+												{% if user.id == evolucion.instructor %}
+												<div class="col-md-2 col-sm-4 col-xs-4">
+												<blockquote class="cuadro">
+													<p class="text-info text-center"><b>Instructor:</b><h4 class="text-center">{{user.first_name}}</h4> </p>
+												</blockquote>
+												</div>
+												{% endif %}
+
+												
+										</div>
+									</span>
+
+											
+
+									
+							
+
+									</div>
+
+							</div>
+							{% endif %}
+
+					<!--
+
+						{% if evolucion.instructor != user.id %}
+						
+							<div id="datos" class="datos">
+								<div class="caption text-justify">
+									<h3 class="text-danger text-center"><b> No registro ninguna evolución </b></h3>
+									<hr>
+									<p  class="text-center">
+									
+						 			</p>
+								</div>
+							</div>
+
+						{% endif %} 
+						-->
+					{% endfor %}
+
+					
+
+				<hr>
+			
+				</div>
+			<p>&nbsp;</p>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}
